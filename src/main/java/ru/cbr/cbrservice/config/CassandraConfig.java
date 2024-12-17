@@ -2,9 +2,13 @@ package ru.cbr.cbrservice.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
+import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 
 @Configuration
 @EnableCassandraRepositories
-public class Cassandra {
-    
+public class CassandraConfig extends AbstractCassandraConfiguration {
+    @Override
+    protected String getKeyspaceName() {
+        return "cbr_keyspace";
+    }
 }

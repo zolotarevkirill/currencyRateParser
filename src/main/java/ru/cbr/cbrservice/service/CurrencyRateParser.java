@@ -1,5 +1,8 @@
 package ru.cbr.cbrservice.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import ru.cbr.cbrservice.repository.CurrencyRateRepository;
+
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +17,15 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 @Service
-public class CatalogParser {
+public class CurrencyRateParser {
 
+    private CurrencyRateRepository currencyRateRepository;
     private String serviceUrl = "http://www.cbr.ru/scripts/XML_daily.asp";
+
+    @Autowired
+    public void CurrencyRateService(CurrencyRateRepository currencyRateRepository) {
+        this.currencyRateRepository = currencyRateRepository;
+    }
 
     @PostConstruct
     public void parse() throws ParserConfigurationException, IOException, SAXException {
